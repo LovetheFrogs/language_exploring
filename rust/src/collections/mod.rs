@@ -216,6 +216,32 @@ fn main() {
     /* HashMaps don't take ownership of the values introduced into them if they are of types which implement the Copy trait. For owned values
      * like Strings, you can insert them as references to the values, but these references must be valid at least for as long as the HashMap is.
      * 
-     * There are some ways to update a HashMap. We will discuss three of them.
+     * There are some ways to update a HashMap. We will discuss three of them. You can use the insert method as if you were to insert a new 
+     * key-value pair. This way the value associated with that key will be the last value used in the insert method.
      */
+    scores.insert(String::from("Blue"), 10);
+    scores.insert(String::from("Blue"), 25);
+
+    /* Another way you can update a HashMap is by adding a key-value only if a key is absent. This is done by using the Entry API, wich returns an
+     * enum Entry that represents a value that may exist. Then, calling the or_insert method on that Entry enum a new key-value will be added if it
+     * didn't exist already.
+     */
+    let mut scores = HashMap::new();
+    scores.insert(String::from("Blue"), 10);
+
+    scores.entry(String::from("Yellow")).or_insert(50);
+    scores.entry(String::from("Yellow")).or_insert(50);
+
+    // This will only create a new entry for yellow with value 50 but will not change Blue's value.
+
+    /* The last way you can update a HashMap is depending on the old value of a key. One example of this follows. In it, an entry is created in case
+     * one didn't already exist and if it did, the value of it gets incremented by one.
+     */
+    let text = "hello world wonderful world";
+    let mut map = HashMap::new();
+
+    for word in text.split_whitespace() {
+        let count = map.entry(word).or_insert(0);
+        *count += 1;
+    }
 }
