@@ -29,7 +29,7 @@ fn structs() {
 
     user1.email = String::from("newuserexamplemail@example.com");
 
-    /** Using struct update syntax, one can create a new instance of a struct with fields
+    /*  Using struct update syntax, one can create a new instance of a struct with fields
      *  common to another one, but changing others. This is done as shown below.
      */
     let user2 = User {
@@ -39,7 +39,7 @@ fn structs() {
         sign_in_count: user1.sign_in_count,
     };
 
-    /** We can also only declare the fields different to the original struct by following the
+    /*  We can also only declare the fields different to the original struct by following the
      *  syntax of the code snippet below. Note that ..user1 must be last.
      *  After using this syntax, user1 will not be aviable to use, just as it is
      *  the case when using move, because the username field has been moved to user3.
@@ -51,7 +51,7 @@ fn structs() {
         ..user1
     };
 
-    /** Black and origin are diferent types because they are instances of a diferent struct. You can
+    /*  Black and origin are diferent types because they are instances of a diferent struct. You can
      *  still use the syntax black.0 to access the 0th element of the tuple black. You can also destructure
      *  them.
      */
