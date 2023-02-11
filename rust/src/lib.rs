@@ -8,3 +8,4 @@ mod enums;
 mod match_control_flow;
 mod if_let_control_flow;
 mod collections;
+mod error_handling;
