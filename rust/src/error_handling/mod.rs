@@ -71,7 +71,7 @@ fn main() -> Result<(), Box<dyn Error>> {
      * of type Box<dyn Error>> which is a trait object, and will be talked about in another chapter. Using that return value, the code below will
      * work inside the main function. Using it will also make the main function return 0 if the returned value is Ok, and a noncero value if it
      * return an Err. Main can return any type that implement the std::process::Termination trait, which contains a function report that returns
-     * an ExitCode
+     * an ExitCode.
      */
     let greeting_file = File::open("hello.txt")?;
 
