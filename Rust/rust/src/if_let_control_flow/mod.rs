@@ -15,7 +15,7 @@ enum Coin {
 }
 
 /** The code snippet that follows this comment is equivalent to this:
- *          let config_max = Some(3u8);
+ *  let config_max = Some(3u8);
  *          match config_max {
  *              Some(max) => println!("The maximum is configured to be {}", max),
  *              _ => (),
