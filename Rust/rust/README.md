@@ -1,1 +1,1 @@
-![Total lines](https://img.shields.io/tokei/lines/github.com/LovetheFrogs/language_exploring/tree/main/Rust/rust?color=green&label=total%20lines)
+git ls-files | grep '\.rs' | xargs wc -l
