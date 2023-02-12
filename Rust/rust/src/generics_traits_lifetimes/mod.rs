@@ -220,7 +220,68 @@ impl <T: Display + PartialOrd> Pair<T> {
 
 /* LIFETIMES */
 
+/** To make some functions that use references work, you will need to explicictly declare lifetimes. An example of it is 
+ *  the following function, which needs lifetimes specified for Rust's compiler borrow checker to work.
+ */
+fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
+    if x.len() > y.len() {
+        x
+    } else {
+        y
+    }
+}
 
+/** If the function always returned the first parameter, we wouldnt need to specify the lifetime of y.
+ */
+fn longest2<'a>(x: &'a str, y: &str) -> &'a str {
+    x
+}
+
+/** We can create structs made up of references by using generic's notation like shown below
+ */
+struct ImportantExcerpt<'a> {
+    part: &'a str,
+}
+
+/** Sometimes lifetimes don't have to be specified. Check the Rust book, chapter 10-3 for more information about Lifetime Elisions
+ */
+
+/** Lifetimes always need to be specified in the impl block of a Struct.
+ */
+impl<'a> ImportantExcerpt<'a> {
+    fn level(&self) -> i32 {
+        3
+    }
+
+    /** In this function, the third lifetime elision rule applies. */
+    fn announce_and_return_part(&self, announcement: &str) -> &str {
+        println!("Attention please: {}", announcement);
+        self.part
+    }
+}
+
+/** The static lifetime allows the reference to live for the entire duration of the program. String literals have all the 
+ *  'static lifetime like:
+ *          let s: &'static str = "I have a static lifetime.";
+ */
+
+/** To finish off this chapter, an example of Generic type parameters, Trait bounds and Lifetimes will be shown below.
+ */
+fn longest_with_an_announcement<'a, T>(
+    x: &'a str, 
+    y: &'a str, 
+    ann: T
+) -> &'a str
+where
+    T: Display,
+{
+    println!("Announdement! {}", ann);
+    if x.len() > y.len() {
+        x
+    } else {
+        y
+    }
+}
 
 fn main() {
     // Usage of the Point struct, defined with generics.
