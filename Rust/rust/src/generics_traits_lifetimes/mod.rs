@@ -220,6 +220,8 @@ impl <T: Display + PartialOrd> Pair<T> {
 
 /* LIFETIMES */
 
+
+
 fn main() {
     // Usage of the Point struct, defined with generics.
     let integer = Point { x: 5 , y: 10 };
