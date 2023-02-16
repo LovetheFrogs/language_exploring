@@ -1,0 +1,29 @@
+THIS IS AN EXAMPLE OF A CORRECTLY FORMATED CARGO.TOML FILE FOR A LIBRARY
+
+-------------------------------------------------
+
+[package]
+name = "my_library"
+version = "0.1.0"
+edition = "2021"
+description = "A library that does stuff."
+license = "MIT"
+
+[dependencies]
+
+-------------------------------------------------
+
+To publish a crate to crates.io use `cargo publish` note that you can't delete a package, 
+you can only deprecate it with the command `cargo yank --vers "VERSION_NUMBER"`. If you 
+append `--undo` to that command, the yank will be undone. 
+
+To update an existing crate you published, just change the version in the Cargo.toml file 
+and re-update the crate.
+
+Chapter 14.3-Cargo Workspaces can be found in folder add, located in languague_exploring/Rust/add
+
+-------------------------------------------------
+
+To install new crates, use the `cargo install` command. Other useful Cargo commands are:
+    - cargo `something` -> runs a custom command as a Cargo subcommand.
+    - cargo -- list     -> lists all cargo subcommands (custom commands are included).
