@@ -2,7 +2,9 @@
 
 ## Structure
 
-All files are located inside the src folder. Inside it you can find a folder with the name of the topic covered by that part and, inside that folder, a mod.rs file with the code in it.
+All files are located inside the rust/src folder. Inside it you can find a folder with the name of the topic covered by that part and, inside that folder, a mod.rs file with the code in it.
+
+Come chapters are not located inside rust/src, and instead found in the root directory Rust. Those chapters are Chapter 12-An I/O project, Chapter 14.3-Cargo Workspaces.
 
 ## Considerations
 
