@@ -3,12 +3,12 @@
  *  particular, use the `cargo test --test integration_test` command. Also, only projects with a lib.rs file can use this tests/ 
  *  folder function, as this library exposes functions that other crates can use. 
  */
-use testing;
+use rust::add_two;
 
 mod common;
 
 #[test]
 fn it_adds_two() {
     common::setup();
-    assert_eq!(4, testing::add_two(2));
+    assert_eq!(4, add_two(2));
 }

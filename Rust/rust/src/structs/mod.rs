@@ -31,13 +31,13 @@ fn structs() {
 
     /*  Using struct update syntax, one can create a new instance of a struct with fields
      *  common to another one, but changing others. This is done as shown below.
-     */
+    
     let user2 = User {
         active: user1.active,
         username: user1.username,
         email: String::from("another@example.com"),
         sign_in_count: user1.sign_in_count,
-    };
+    }; commented to avoid conflit with snippet below */
 
     /*  We can also only declare the fields different to the original struct by following the
      *  syntax of the code snippet below. Note that ..user1 must be last.

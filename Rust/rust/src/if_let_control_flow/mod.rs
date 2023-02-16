@@ -37,10 +37,10 @@ fn main() {
     /* Another example of match vs if let */
     let mut count = 0;
     let coin = Coin::Quarter(UsState::Alabama);
-    match coin {
+    /* match coin {
         Coin::Quarter(state) => println!("State quarter from {:?}!", state),
         _ => count += 1,
-    }
+    } commented to avoid errors */
 
     // Above match is equivalent to following if let
 

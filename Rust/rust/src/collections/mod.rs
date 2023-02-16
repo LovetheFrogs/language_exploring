@@ -64,7 +64,7 @@ fn main() {
      * the * dereference operator to get to the value in i before using the += operator
      */
     let mut v = vec![100, 32, 57];
-    for i in &v {
+    for i in &mut v {
         *i += 50;
     }
 
