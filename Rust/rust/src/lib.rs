@@ -11,6 +11,7 @@ mod collections;
 mod error_handling;
 mod generics_traits_lifetimes;
 mod testing;
+mod cargo_crates;
 
 /** Function add_two present in src/testing/mod.rs moved here for usage in tests/integration tests.
  */
