@@ -13,6 +13,7 @@ mod generics_traits_lifetimes;
 mod testing;
 mod iterators_closures;
 mod cargo_crates;
+mod smart_pointers;
 
 /** Function add_two present in src/testing/mod.rs moved here for usage in tests/integration tests.
  */
