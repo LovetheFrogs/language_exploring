@@ -44,4 +44,11 @@ fn main() {
 
     // Declaring a new List type
     let list = Cons(1, Box::new(Cons(2, Box::new(Cons(3, Box::new(Nil))))));
+
+    // By implementing the Deref trait in the MyBox<T> struct, we can use the * operator to deref a value and thus, the code below will work.
+    let x = 5;
+    let y = MyBox::new(5);
+
+    assert_eq!(5, x);
+    assert_eq!(5, *y);
 }
