@@ -1,6 +1,6 @@
 use std::thread;
 use std::time::Duration;
-use std::sync::mpsc;
+use std::sync::{mpsc, Mutex, Arc};
 
 /** To create a new thread, you just call the thread::spawn function, while passing a closure with the code we want to run as an argument. This code prints some text
  *  from a main thread and other text from a new thread. Note that when the main thread ends, all spawned threads are shut down. To avoid this, we save the return value
@@ -119,4 +119,50 @@ fn multiple_producer_single_consumer() {
     for received in rx {
         println!("Got: {}", received);
     }
+}
+
+/** We create a Mutex<i32>, and then we get the lock in the inner scope and change the value pointed to from 5 to 6. The `lock()` method will return a `LockResult`
+ *  or fail if another thread hlding the lock failed. We've chosen to use the unwrap method to panic! in that situation. In case it unwrap doesn't fail, it returns
+ *  a MutexGuard<i32> smart pointer, which implements the Deref trait to point at our inner data. It also has a Drop implementation that releases the lock when a 
+ *  MutexGuard goes out of scope so we don't risk forgetting to release the lock and blocking the mutex from being used by other threads.
+ */
+#[test]
+fn mutex_single_thread() {
+    let m = Mutex::new(5);
+
+    {
+        let mut num = m.lock().unwrap();
+        *num = 6;
+    }
+
+    println!("m = {:?}", m);
+}
+
+/** In the following example, we create 10 threads that will add one to the value of the lock so it gets to 10. To share a Mutex<T> between threads, we will have to 
+ *  use a smart pointer. Rc<T> is what comes first into mind, but it is not htread safe, so we use Arc<T> instead, which stands for an atomically reference counted
+ *  type. We have to use this because with the usage of the move keyword in the thread closure, we take the mutex out of scope for other threads to use. You can 
+ *  realise that the usage of Arc<Mutex<T>> is similar to Rc<RefCell<T>>, and while the later alows us to create the dangerous cycles, the former makes the appereance
+ *  of Deadlocks possible. This happens when a lock is called on two variables by different threads, and so each thread is waiting for the other to free the lock, so
+ *  it just stays in that locked state.
+ */
+#[test]
+fn use_threads_increment_value() {
+    let counter = Arc::new(Mutex::new(0));
+    let mut handles = vec![];
+
+    for _ in 0..10 {
+        let counter = Arc::clone(&counter);
+        let handle = thread::spawn(move || {
+            let mut num = counter.lock().unwrap();
+
+            *num += 1;
+        });
+        handles.push(handle);
+    }
+
+    for handle in handles {
+        handle.join().unwrap();
+    }
+
+    println!("Result: {}", *counter.lock().unwrap());
 }
