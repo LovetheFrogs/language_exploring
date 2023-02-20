@@ -15,6 +15,7 @@ mod iterators_closures;
 mod cargo_crates;
 mod smart_pointers;
 mod concurency_threads;
+mod object_oriented_rust;
 
 /** Function add_two present in src/testing/mod.rs moved here for usage in tests/integration tests.
  */
