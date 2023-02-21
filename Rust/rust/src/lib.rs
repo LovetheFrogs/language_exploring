@@ -17,6 +17,7 @@ mod smart_pointers;
 mod concurency_threads;
 mod object_oriented_rust;
 mod patterns_matching;
+mod advanced_features;
 
 /** Function add_two present in src/testing/mod.rs moved here for usage in tests/integration tests.
  */
