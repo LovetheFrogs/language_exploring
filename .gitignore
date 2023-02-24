@@ -1,6 +1,7 @@
 
-Rust/rust/target/
+Rust/rust/target
 Rust/minigrep/target
 Rust/add/target
 Rust/hello_macro/target
 Rust/hello_macro/hello_macro_derive/target
+Rust/tcp_listener/target
